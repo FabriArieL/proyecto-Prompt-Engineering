@@ -1,4 +1,4 @@
-### MindBloom 🌸 - Apoyo emocional con IA
+# MindBloom 🌸 - Apoyo emocional con IA
 
 Bienvenido/a al repositorio del proyecto MindBloom, una aplicación web sencilla desarrollada con Streamlit que utiliza el modelo de lenguaje de OpenAI para brindar contención emocional, journaling guiado, afirmaciones positivas y sugerencias de hábitos saludables.
 
@@ -52,7 +52,7 @@ Modo oscuro / accesibilidad visual
 
 Guardado por fecha o usuario anónimo
 
-# 📬 Contacto
+### 📬 Contacto
 
 Creador: FabriArieL
 
