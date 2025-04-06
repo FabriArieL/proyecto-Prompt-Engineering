@@ -36,6 +36,19 @@ st.markdown("""
 st.title("🌸 MindBloom - Apoyo emocional con IA")
 st.markdown("Una app para reflexionar, desahogarte y recibir guía emocional con IA")
 
+# Sección de "Cómo funciona"
+with st.expander("🔍 ¿Cómo funciona MindBloom?"):
+    st.markdown("""
+    **MindBloom** está diseñado para ofrecerte un espacio seguro donde puedas expresarte y recibir orientación emocional. Aquí te explicamos cómo funciona:
+
+    - ✍️ **Ingresá cómo te sentís** en el cuadro de texto.
+    - 🤖 **MindBloom** analizará tu mensaje y responderá con empatía, comprensión y sugerencias útiles.
+    - 💡 Podés usarlo para desahogarte, reflexionar o buscar afirmaciones positivas.
+    - 🔐 Todo lo que compartas se mantiene de forma privada en tu sesión.
+
+    ¡Sentite libre de usarlo tantas veces como lo necesites!
+    """)
+
 # Inicializar historial de conversación si no existe
 if "messages" not in st.session_state:
     st.session_state.messages = [
@@ -53,16 +66,20 @@ mostrar_historial()
 # Entrada del usuario
 user_input = st.text_input("¿Cómo te sentís hoy o qué querés expresar?")
 
-if user_input:
-    st.session_state.messages.append({"role": "user", "content": user_input})
+# Botón de acción para enviar mensaje
+if st.button("Enviar a MindBloom"):
+    if user_input:
+        st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # Llamar al modelo de OpenAI
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=st.session_state.messages
-    )
-    reply = response.choices[0].message.content
-    st.session_state.messages.append({"role": "assistant", "content": reply})
+        # Llamar al modelo de OpenAI
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=st.session_state.messages
+        )
+        reply = response.choices[0].message.content
+        st.session_state.messages.append({"role": "assistant", "content": reply})
 
-    # Mostrar respuesta
-    mostrar_historial()
+        # Mostrar respuesta
+        mostrar_historial()
+    else:
+        st.warning("Por favor, escribí algo antes de enviar.")
